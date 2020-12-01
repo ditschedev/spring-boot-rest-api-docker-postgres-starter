@@ -6,7 +6,7 @@ A simple starter project to directly get started to develop your backend service
 * 👀 env variables setup
 
 ### Getting started
-> After cloning you should update the namespace matching your domain and project
+> After cloning you should update the package matching your domain and project
 
 To get started just clone this repository in a folder you like and start working:
 ```shell script
