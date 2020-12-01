@@ -1,0 +1,30 @@
+version: '3'
+services:
+  sb-postgres:
+    image: postgres:12
+    container_name: sb-postgres
+    environment:
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${DATABASE_USERNAME}
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  sb-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: sb-app
+    env_file:
+      - ./.env
+    ports:
+      - 8080:8080
+    depends_on:
+      - sb-postgres
+    restart: unless-stopped
+    links:
+      - sb-postgres
+volumes:
+  pgdata: {}
